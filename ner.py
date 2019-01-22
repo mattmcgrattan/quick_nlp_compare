@@ -2,6 +2,7 @@ import spacy
 from flair.data import Sentence
 from flair.models import SequenceTagger
 import json
+from dictdiffer import diff
 
 
 def spacy_ner(text, nlp):
@@ -33,8 +34,12 @@ def flair_ner(text, tagger):
 
 
 def combined_ner(source_text, spacy_nlp, flair_tagger):
+    s = spacy_ner(source_text, spacy_nlp)
+    f = flair_ner(source_text, flair_tagger)
     d = {"text": source_text, "spacy_entities": spacy_ner(source_text, spacy_nlp),
-         "flair_entities": flair_ner(source_text, flair_tagger)}
+         "flair_entities": flair_ner(source_text, flair_tagger), "diff": diff(s, f)}
+    print(len(d["spacy_entities"]))
+    print(len(d["flair_entities"]))
     return d
 
 
@@ -47,7 +52,7 @@ if __name__ == "__main__":
         "their two dogs, Biff and Chip."
     d2 = "The Navajo are a Native American tribe found throughout the American West, especially " \
          "in New Mexico and Arizona."
-    print(json.dumps(combined_ner(source_text=d1, spacy_nlp=n, flair_tagger=t), indent=4))
-    print(json.dumps(combined_ner(source_text=d2, spacy_nlp=n, flair_tagger=t), indent=4))
+    # print(json.dumps(combined_ner(source_text=d1, spacy_nlp=n, flair_tagger=t), indent=4))
+    # print(json.dumps(combined_ner(source_text=d2, spacy_nlp=n, flair_tagger=t), indent=4))
     print(json.dumps(combined_ner(source_text=washington, spacy_nlp=n, flair_tagger=t), indent=4))
 
