@@ -12,7 +12,8 @@ decorator==4.3.0
 Deprecated==1.2.4
 dill==0.2.9
 docutils==0.14
-https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.1.0a6/en_core_web_lg-2.1.0a6.tar.gzflair==0.4.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_lg-2.1.0a6/en_core_web_lg-2.1.0a6.tar.gz
+flair==0.4.0
 future==0.17.1
 gensim==3.4.0
 hyperopt==0.1.1
