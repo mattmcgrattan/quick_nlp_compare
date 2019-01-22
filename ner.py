@@ -36,8 +36,8 @@ def flair_ner(text, tagger):
 def combined_ner(source_text, spacy_nlp, flair_tagger):
     s = spacy_ner(source_text, spacy_nlp)
     f = flair_ner(source_text, flair_tagger)
-    d = {"text": source_text, "spacy_entities": spacy_ner(source_text, spacy_nlp),
-         "flair_entities": flair_ner(source_text, flair_tagger), "diff": diff(s, f)}
+    d = {"text": source_text, "spacy_entities": s,
+         "flair_entities": f, "diff": diff(s, f)}
     print(len(d["spacy_entities"]))
     print(len(d["flair_entities"]))
     return d
